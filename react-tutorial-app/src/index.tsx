@@ -6,6 +6,13 @@ type SquareProps = {
     value: number;
 }
 class Square extends React.Component<SquareProps, {}> {
+    constructor(props: SquareProps) {
+        super(props);
+        this.state = {
+            value: null,
+        };
+    }
+
     render() {
         return (
             <button className="square" onClick={() => alert('click')} >
