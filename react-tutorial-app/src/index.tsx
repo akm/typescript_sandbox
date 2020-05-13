@@ -2,32 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+type Value = 'X' | 'O' | null
+
 type SquareProps = {
-    value: number;
+    value: Value;
 }
 type SquareState = {
     value: string | null;
 }
 class Square extends React.Component<SquareProps, SquareState> {
-    constructor(props: SquareProps) {
-        super(props);
-        this.state = {
-            value: null,
-        };
-    }
-
     render() {
         return (
             <button className="square" onClick={() => this.setState({value: 'X'})} >
-                {this.state.value}
+                {this.props.value}
             </button>
         );
     }
 }
 
-class Board extends React.Component {
+type BoardProps = {
+}
+type BoardState = {
+    squares: Value[]
+}
+
+class Board extends React.Component<BoardProps, BoardState> {
+    constructor(props: BoardProps) {
+        super(props);
+        this.state = {
+            squares: Array<Value>(9).fill(null),
+        };
+    }
+
     renderSquare(i: number) {
-        return <Square value={i} />;
+        return <Square value={this.state.squares[i]} />;
     }
 
     render() {
