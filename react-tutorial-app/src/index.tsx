@@ -8,10 +8,7 @@ type SquareProps = {
     value: Value;
     onClick: () => void;
 }
-type SquareState = {
-    value: string | null;
-}
-class Square extends React.Component<SquareProps, SquareState> {
+class Square extends React.Component<SquareProps, {}> {
     render() {
         return (
             <button className="square" onClick={() => this.props.onClick()} >
