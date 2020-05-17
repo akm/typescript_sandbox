@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
-class Counter extends Component {
-    constructor(props) {
+type CounterProps = {
+    value: number
+    onIncrement: () => void
+    onDecrement: () => void
+}
+
+class Counter extends Component<CounterProps> {
+    constructor(props: CounterProps) {
         super(props);
         this.incrementAsync = this.incrementAsync.bind(this);
         this.incrementIfOdd = this.incrementIfOdd.bind(this);
@@ -42,12 +47,6 @@ class Counter extends Component {
             </p>
         )
     }
-}
-
-Counter.propTypes = {
-    value: PropTypes.number.isRequired,
-    onIncrement: PropTypes.func.isRequired,
-    onDecrement: PropTypes.func.isRequired
 }
 
 export default Counter
