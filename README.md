@@ -9,3 +9,4 @@
 - [React公式のTutorial](https://reactjs.org/tutorial/tutorial.html) を [TypeScriptでやってみた](./react-tutorial-app)
 - [React公式のAdvanced Guide](https://ja.reactjs.org/docs/accessibility.html) を読んだ(日本語ありがたい）
 - [React公式のHooks](https://ja.reactjs.org/docs/hooks-intro.html) を読んだ(日本語ありがたい）
+- [Redux公式のBasic Tutorial](https://redux.js.org/basics/example) を [TypeScriptでやってみた](./redux-basic-tutorial-todos)
