@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { toggleTodo } from '../actions'
 import TodoList from '../components/TodoList'
 import { VisibilityFilter } from '../actions'
+import { AppDispatch } from '../store'
 
 type Todo = {
     completed: boolean
@@ -29,7 +30,7 @@ const mapStateToProps = (state: State) => ({
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
     toggleTodo: (id: number) => dispatch(toggleTodo(id))
 })
 
