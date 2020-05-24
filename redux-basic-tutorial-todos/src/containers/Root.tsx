@@ -7,7 +7,7 @@ import { AppStore } from '../store'
 const Root = ({ store }: { store: AppStore }) => (
     <Provider store={store}>
         <Router>
-            <Route path="/" component={App} />
+            <Route path="/:filter?" component={App} />
         </Router>
     </Provider>
 )
