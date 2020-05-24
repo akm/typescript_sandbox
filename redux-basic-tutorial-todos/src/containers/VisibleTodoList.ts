@@ -23,8 +23,12 @@ type State = {
     visibilityFilter: VisibilityFilter
 }
 
-const mapStateToProps = (state: State) => ({
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+type Props = {
+    filter: VisibilityFilter
+}
+
+const mapStateToProps = (state: State, ownProps: Props) => ({
+    todos: getVisibleTodos(state.todos, ownProps.filter)
 })
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
