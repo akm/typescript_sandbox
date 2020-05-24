@@ -1,10 +1,5 @@
+import { Todo } from '../todo'
 import { AddTodoAction, ToggleTodoAction } from '../actions'
-
-type Todo = {
-    id: number
-    text: string
-    completed: boolean
-}
 
 const todos = (state: Todo[] = [], action: AddTodoAction | ToggleTodoAction): Todo[] => {
     switch (action.type) {

@@ -3,10 +3,7 @@ import { toggleTodo } from '../actions'
 import TodoList from '../components/TodoList'
 import { VisibilityFilter } from '../actions'
 import { AppDispatch } from '../store'
-
-type Todo = {
-    completed: boolean
-}
+import { Todo } from '../todo'
 
 const getVisibleTodos = (todos: Todo[], filter: VisibilityFilter) => {
     switch (filter) {
