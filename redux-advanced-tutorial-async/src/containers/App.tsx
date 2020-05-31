@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { connect } from 'react-redux';
 
-import AppComponent from '../components/App'
+import AppComponent, { AppProps } from '../components/App'
+import { RedditState, initialState } from '../reducers';
 
-const App = () => (
-    <AppComponent
-        subreddit="reduxjs"
-        isLoading={false}
-        lastUpdatedAt={new Date("2020-05-31 13:32:54")} />
-)
+type StateProps = AppProps
 
-export default App
+const mapStateToProps = (state: RedditState = initialState): StateProps => ({
+    subreddit: state.subreddit,
+    isLoading: state.isLoading,
+    lastUpdatedAt: state.lastUpdatedAt,
+})
+
+const App: FC<StateProps> = ({
+    subreddit,
+    isLoading,
+    lastUpdatedAt,
+}) => (
+        <AppComponent
+            subreddit={subreddit}
+            isLoading={isLoading}
+            lastUpdatedAt={lastUpdatedAt} />
+    )
+
+export default connect(mapStateToProps)(App)

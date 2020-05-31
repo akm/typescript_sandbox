@@ -2,7 +2,7 @@ import React from 'react';
 import Picker from './Picker';
 import Posts from '../containers/Posts';
 
-type AppProps = {
+export type AppProps = {
     subreddit: string;
     lastUpdatedAt?: Date;
     isLoading: boolean;
