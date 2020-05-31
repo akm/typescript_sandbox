@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
 import AppComponent, { AppProps } from '../components/App'
 import { RedditState, initialState } from '../reducers';
+import { getPosts } from '../actions';
 
 type StateProps = AppProps
 
@@ -12,15 +14,32 @@ const mapStateToProps = (state: RedditState = initialState): StateProps => ({
     lastUpdatedAt: state.lastUpdatedAt,
 })
 
-const App: FC<StateProps> = ({
+interface DispatchProps {
+    getPostsStart: (subreddit: string) => void;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCreators(
+    {
+        getPostsStart: (subreddit: string) =>
+            getPosts.start({ subreddit }),
+    },
+    dispatch
+);
+
+const App: FC<StateProps & DispatchProps> = ({
     subreddit,
     isLoading,
     lastUpdatedAt,
-}) => (
-        <AppComponent
-            subreddit={subreddit}
-            isLoading={isLoading}
-            lastUpdatedAt={lastUpdatedAt} />
-    )
+    getPostsStart,
+}) => {
+    useEffect(() => {
+        getPostsStart(subreddit);
+    }, []);
 
-export default connect(mapStateToProps)(App)
+    return <AppComponent
+        subreddit={subreddit}
+        isLoading={isLoading}
+        lastUpdatedAt={lastUpdatedAt} />
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
