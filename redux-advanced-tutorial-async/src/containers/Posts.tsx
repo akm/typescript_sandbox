@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { connect } from 'react-redux';
 
-import { Post } from '../services/reddit/models'
-import PostsComponent from '../components/Posts'
+import PostsComponent, { PostsProps } from '../components/Posts'
+import { RedditState, initialState } from '../reducers';
 
-const dummyPosts: Post[] = [
-    { title: 'foo' },
-    { title: 'bar' },
-    { title: 'baz' },
-]
+type StateProps = PostsProps
 
-const Posts = () => (
-    <PostsComponent posts={dummyPosts} />
+const mapStateToProps = (state: RedditState = initialState): StateProps => ({
+    posts: state.posts,
+})
+
+const Posts: FC<StateProps> = ({ posts }) => (
+    <PostsComponent posts={posts} />
 )
 
-export default Posts
+export default connect(mapStateToProps)(Posts)
