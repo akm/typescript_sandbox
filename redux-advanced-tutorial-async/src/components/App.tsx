@@ -1,16 +1,11 @@
 import React from 'react';
+import Picker from './Picker';
+import Posts from './Posts';
 
 function App() {
     return (
         <div>
-            <span>
-                <h1>reactjs</h1>
-                <select value="reactjs">
-                    <option value="reactjs" key="reactjs">reactjs</option>
-                    <option value="frontend" key="frontend">frontend</option>
-                </select>
-            </span>
-
+            <Picker />
             <p>
                 <span>
                     Last updated at {new Date("2020-05-31 13:32:54").toLocaleTimeString()}.
@@ -23,11 +18,7 @@ function App() {
             </p>
 
             <div style={{ opacity: 1 }}>
-                <ul>
-                    <li key="0">foo</li>
-                    <li key="1">bar</li>
-                    <li key="2">baz</li>
-                </ul >
+                <Posts />
             </div >
 
         </div >
