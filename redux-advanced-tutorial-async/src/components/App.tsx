@@ -1,6 +1,6 @@
 import React from 'react';
 import Picker from './Picker';
-import Posts from './Posts';
+import Posts from '../containers/Posts';
 
 function App() {
     return (

@@ -1,10 +1,16 @@
 import React from 'react'
 
-const Posts = () => (
+import { Post } from '../services/reddit/models'
+
+export type PostsProps = {
+    posts: Post[]
+}
+
+const Posts = (props: PostsProps) => (
     <ul>
-        <li key="0">foo</li>
-        <li key="1">bar</li>
-        <li key="2">baz</li>
+        {props.posts.map((post, i) =>
+            (<li key={i}>{post.title}</li>)
+        )}
     </ul >
 )
 

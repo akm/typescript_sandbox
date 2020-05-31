@@ -1,2 +1,3 @@
-export type Post = {    
+export type Post = {
+    title: string;
 }
