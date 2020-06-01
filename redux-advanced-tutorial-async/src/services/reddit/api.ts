@@ -23,7 +23,7 @@ export const getPostsFactory = (optionConfig?: ApiConfig) => {
             if (response.status !== 200) {
                 throw new Error('Server Error');
             }
-            const posts: Post[] = response.data.children.map((i: any) => i.data);
+            const posts: Post[] = response.data.data.children.map((i: any) => i.data);
             return posts;
         } catch (err) {
             throw err;
