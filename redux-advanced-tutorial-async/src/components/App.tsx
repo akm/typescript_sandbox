@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Picker from './Picker';
 import Posts from '../containers/Posts';
 
@@ -8,18 +8,21 @@ export type AppProps = {
     isLoading: boolean;
 }
 
-const App = (props: AppProps) => (
+const App: FC<AppProps> = ({
+    subreddit,
+    lastUpdatedAt,
+    isLoading,    
+}) => (
     <div>
         <Picker />
         <p>
-            {props.lastUpdatedAt &&
-                <span>
-                    Last updated at {props.lastUpdatedAt.toLocaleTimeString()}.
+            {lastUpdatedAt &&
+             <span>
+                 Last updated at {lastUpdatedAt.toLocaleTimeString()}.
                  {' '}
-                </span>
+             </span>
             }
-
-            {!props.isLoading &&
+            {!isLoading &&
                 <button>
                     Refresh
              </button>
