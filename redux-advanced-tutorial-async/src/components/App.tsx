@@ -6,12 +6,14 @@ export type AppProps = {
     subreddit: string;
     lastUpdatedAt?: Date;
     isLoading: boolean;
+    onRefreshClick: () => void,
 }
 
 const App: FC<AppProps> = ({
     subreddit,
     lastUpdatedAt,
-    isLoading,    
+    isLoading,
+    onRefreshClick,
 }) => (
     <div>
         <Picker />
@@ -23,8 +25,8 @@ const App: FC<AppProps> = ({
              </span>
             }
             {!isLoading &&
-                <button>
-                    Refresh
+             <button onClick={onRefreshClick}>
+                 Refresh
              </button>
             }
         </p>

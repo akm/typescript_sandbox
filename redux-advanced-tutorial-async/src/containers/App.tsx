@@ -6,7 +6,11 @@ import AppComponent, { AppProps } from '../components/App'
 import { RedditState, initialState } from '../reducers';
 import { getPosts } from '../actions';
 
-type StateProps = AppProps
+type StateProps = {
+    subreddit: string;
+    lastUpdatedAt?: Date;
+    isLoading: boolean;
+}
 
 const mapStateToProps = (state: RedditState = initialState): StateProps => ({
     subreddit: state.subreddit,
@@ -36,10 +40,16 @@ const App: FC<StateProps & DispatchProps> = ({
         getPostsStart(subreddit);
     }, []);
 
+    const handleRefreshClick = () => {
+        getPostsStart(subreddit)
+    }
+
     return <AppComponent
         subreddit={subreddit}
         isLoading={isLoading}
-        lastUpdatedAt={lastUpdatedAt} />
+        lastUpdatedAt={lastUpdatedAt}
+        onRefreshClick={ handleRefreshClick }
+    />
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
