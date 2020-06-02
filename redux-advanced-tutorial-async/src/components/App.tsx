@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
-import Picker from './Picker';
+import Picker, { PickerProps } from './Picker';
 import Posts from '../containers/Posts';
 
 export type AppProps = {
     subreddit: string;
     lastUpdatedAt?: Date;
     isLoading: boolean;
-    onRefreshClick: () => void,
+    onRefreshClick: () => void;
+    onChangeSubreddit: PickerProps['onChange'];
 }
 
 const App: FC<AppProps> = ({
@@ -14,9 +15,10 @@ const App: FC<AppProps> = ({
     lastUpdatedAt,
     isLoading,
     onRefreshClick,
+    onChangeSubreddit,
 }) => (
     <div>
-        <Picker subreddit={subreddit} options={[ 'reactjs', 'frontend' ]}/>
+        <Picker subreddit={subreddit} options={[ 'reactjs', 'frontend' ]} onChange={onChangeSubreddit} />
         <p>
             {lastUpdatedAt &&
              <span>

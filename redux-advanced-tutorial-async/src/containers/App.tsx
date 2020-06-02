@@ -4,18 +4,21 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import AppComponent, { AppProps } from '../components/App'
 import { RedditState, initialState } from '../reducers';
-import { getPosts } from '../actions';
+import { getPosts, selectSubreddit } from '../actions';
 
 type StateProps = {
-    subreddit: string;
-    lastUpdatedAt?: Date;
-    isLoading: boolean;
+    subreddit: AppProps['subreddit'];
+    lastUpdatedAt?: AppProps['lastUpdatedAt'];
+    isLoading: AppProps['isLoading'];
+    handleChangeSubreddit: AppProps['onChangeSubreddit'];
 }
 
 const mapStateToProps = (state: RedditState = initialState): StateProps => ({
     subreddit: state.subreddit,
     isLoading: state.isLoading,
     lastUpdatedAt: state.lastUpdatedAt,
+    handleChangeSubreddit: (subreddit: string) =>
+        selectSubreddit(subreddit),
 })
 
 interface DispatchProps {
@@ -34,6 +37,7 @@ const App: FC<StateProps & DispatchProps> = ({
     subreddit,
     isLoading,
     lastUpdatedAt,
+    handleChangeSubreddit,
     getPostsStart,
 }) => {
     useEffect(() => {
@@ -45,10 +49,11 @@ const App: FC<StateProps & DispatchProps> = ({
     }
 
     return <AppComponent
-        subreddit={subreddit}
-        isLoading={isLoading}
-        lastUpdatedAt={lastUpdatedAt}
-        onRefreshClick={ handleRefreshClick }
+               subreddit={subreddit}
+               isLoading={isLoading}
+               lastUpdatedAt={lastUpdatedAt}
+               onRefreshClick={ handleRefreshClick }
+               onChangeSubreddit={ handleChangeSubreddit }
     />
 }
 
