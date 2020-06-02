@@ -10,25 +10,26 @@ type StateProps = {
     subreddit: AppProps['subreddit'];
     lastUpdatedAt?: AppProps['lastUpdatedAt'];
     isLoading: AppProps['isLoading'];
-    handleChangeSubreddit: AppProps['onChangeSubreddit'];
 }
 
 const mapStateToProps = (state: RedditState = initialState): StateProps => ({
     subreddit: state.subreddit,
     isLoading: state.isLoading,
     lastUpdatedAt: state.lastUpdatedAt,
-    handleChangeSubreddit: (subreddit: string) =>
-        selectSubreddit(subreddit),
 })
 
 interface DispatchProps {
     getPostsStart: (subreddit: string) => void;
+    handleChangeSubreddit: AppProps['onChangeSubreddit'];
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCreators(
     {
         getPostsStart: (subreddit: string) =>
             getPosts.start({ subreddit }),
+
+        handleChangeSubreddit: (subreddit: string) =>
+            selectSubreddit(subreddit),
     },
     dispatch
 );
