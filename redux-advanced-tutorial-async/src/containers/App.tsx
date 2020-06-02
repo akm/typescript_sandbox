@@ -43,7 +43,7 @@ const App: FC<StateProps & DispatchProps> = ({
 }) => {
     useEffect(() => {
         getPostsStart(subreddit);
-    }, []);
+    }, [subreddit]);
 
     const handleRefreshClick = () => {
         getPostsStart(subreddit)
