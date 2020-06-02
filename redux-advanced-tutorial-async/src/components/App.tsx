@@ -16,7 +16,7 @@ const App: FC<AppProps> = ({
     onRefreshClick,
 }) => (
     <div>
-        <Picker />
+        <Picker subreddit={subreddit} options={[ 'reactjs', 'frontend' ]}/>
         <p>
             {lastUpdatedAt &&
              <span>

@@ -1,11 +1,20 @@
-import React from 'react'
+import React, {FC} from 'react'
 
-const Picker = () => (
+export type PickerProps = {
+    subreddit: string;
+    options: string[];
+}
+
+const Picker: FC<PickerProps> = ({
+    subreddit,
+    options,
+}) => (
     <span>
-        <h1>reactjs</h1>
-        <select value="reactjs">
-            <option value="reactjs" key="reactjs">reactjs</option>
-            <option value="frontend" key="frontend">frontend</option>
+        <h1>{ subreddit }</h1>
+        <select value={ subreddit }>
+            { options.map(opt =>
+                <option value={opt} key={opt}>{opt}</option>
+            )}
         </select>
     </span>
 )
