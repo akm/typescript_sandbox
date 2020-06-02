@@ -46,6 +46,7 @@ const redditReducer: Reducer<RedditState, Actions> = (
         case ActionTypes.SELECT_SUBREDDIT:
             return {
                 ...state,
+                subreddit: action.subreddit,
             }
     }
 }
