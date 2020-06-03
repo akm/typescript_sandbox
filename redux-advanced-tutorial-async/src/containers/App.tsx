@@ -49,13 +49,13 @@ const App: FC<StateProps & DispatchProps> = ({
         getPostsStart(subreddit)
     }
 
-    return <AppComponent
-               subreddit={subreddit}
-               isLoading={isLoading}
-               lastUpdatedAt={lastUpdatedAt}
-               onRefreshClick={ handleRefreshClick }
-               onChangeSubreddit={ handleChangeSubreddit }
-    />
+    const props = {
+        subreddit, isLoading, lastUpdatedAt,
+        onRefreshClick: handleRefreshClick,
+        onChangeSubreddit: handleChangeSubreddit,
+    }
+
+    return <AppComponent {...props} />
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
