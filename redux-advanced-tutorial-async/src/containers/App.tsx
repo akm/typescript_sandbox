@@ -32,20 +32,20 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCrea
 );
 
 const App: FC<StateProps & DispatchProps> = ({
-    subreddit,
-    isLoading,
-    lastUpdatedAt,
     handleChangeSubreddit,
     getPostsStart,
+    subreddit,
+    ...rest
 }) => {
     useEffect(() => {
         getPostsStart(subreddit);
     }, [subreddit]);
 
     const props = {
-        subreddit, isLoading, lastUpdatedAt,
+        subreddit,
         onRefreshClick: () => getPostsStart(subreddit),
         onChangeSubreddit: handleChangeSubreddit,
+        ...rest
     }
 
     return <AppComponent {...props} />
