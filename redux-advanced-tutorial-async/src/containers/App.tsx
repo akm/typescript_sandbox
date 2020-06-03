@@ -6,11 +6,7 @@ import AppComponent, { AppProps } from '../components/App'
 import { RedditState, initialState } from '../reducers';
 import { getPosts, selectSubreddit } from '../actions';
 
-type StateProps = {
-    subreddit: AppProps['subreddit'];
-    lastUpdatedAt?: AppProps['lastUpdatedAt'];
-    isLoading: AppProps['isLoading'];
-}
+type StateProps = Pick<AppProps, 'subreddit' | 'lastUpdatedAt' | 'isLoading'>
 
 const mapStateToProps = (state: RedditState = initialState): StateProps => ({
     subreddit: state.subreddit,
