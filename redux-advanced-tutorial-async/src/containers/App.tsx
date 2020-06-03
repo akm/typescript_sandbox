@@ -45,13 +45,9 @@ const App: FC<StateProps & DispatchProps> = ({
         getPostsStart(subreddit);
     }, [subreddit]);
 
-    const handleRefreshClick = () => {
-        getPostsStart(subreddit)
-    }
-
     const props = {
         subreddit, isLoading, lastUpdatedAt,
-        onRefreshClick: handleRefreshClick,
+        onRefreshClick: () => getPostsStart(subreddit),
         onChangeSubreddit: handleChangeSubreddit,
     }
 
