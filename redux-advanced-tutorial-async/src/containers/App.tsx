@@ -8,11 +8,7 @@ import { getPosts, selectSubreddit } from '../actions';
 
 type StateProps = Pick<AppProps, 'subreddit' | 'lastUpdatedAt' | 'isLoading'>
 
-const mapStateToProps = (state: RedditState = initialState): StateProps => ({
-    subreddit: state.subreddit,
-    isLoading: state.isLoading,
-    lastUpdatedAt: state.lastUpdatedAt,
-})
+const mapStateToProps = (state: RedditState = initialState): StateProps => state;
 
 interface DispatchProps {
     getPostsStart: (subreddit: string) => void;
