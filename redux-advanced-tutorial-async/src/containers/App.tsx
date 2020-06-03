@@ -25,11 +25,8 @@ interface DispatchProps {
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCreators(
     {
-        getPostsStart: (subreddit: string) =>
-            getPosts.start({ subreddit }),
-
-        handleChangeSubreddit: (subreddit: string) =>
-            selectSubreddit(subreddit),
+        getPostsStart: (subreddit: string) => getPosts.start({ subreddit }),
+        handleChangeSubreddit: (subreddit: string) => selectSubreddit(subreddit),
     },
     dispatch
 );
