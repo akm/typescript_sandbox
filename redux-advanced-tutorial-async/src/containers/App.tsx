@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 import AppComponent, { AppProps } from '../components/App'
 import { RedditState, initialState } from '../reducers';
-import { getPosts, selectSubreddit } from '../actions';
+import { getPosts } from '../actions';
 
 type StateProps = Pick<AppProps, 'lastUpdatedAt' | 'isLoading'>
 
@@ -13,13 +13,11 @@ const mapStateToProps = (state: RedditState = initialState): StateProps => state
 
 interface DispatchProps {
     getPostsStart: (subreddit: string) => void;
-    handleChangeSubreddit: AppProps['onChangeSubreddit'];
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCreators(
     {
         getPostsStart: (subreddit: string) => getPosts.start({ subreddit }),
-        handleChangeSubreddit: (subreddit: string) => selectSubreddit(subreddit),
     },
     dispatch
 );
@@ -29,7 +27,6 @@ type EnhancedProps =
     RouteComponentProps<{ subreddit: string }>;
 
 const App: FC<EnhancedProps> = ({
-    handleChangeSubreddit,
     getPostsStart,
     history,
     match,

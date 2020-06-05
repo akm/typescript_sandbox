@@ -47,17 +47,7 @@ export const getPosts = {
     ),
 }
 
-export type selectSubreddit = {
-    type: typeof types.SELECT_SUBREDDIT;
-    subreddit: string;
-}
-
-export const selectSubreddit = (subreddit: string): selectSubreddit => (
-    { type: types.SELECT_SUBREDDIT, subreddit }
-)
-
 export type Actions =
     getPostsStart |
     getPostsSucceed |
-    getPostsFail |
-    selectSubreddit
+    getPostsFail
