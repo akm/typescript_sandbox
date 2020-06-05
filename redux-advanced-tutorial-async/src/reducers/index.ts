@@ -6,14 +6,12 @@ import * as ActionTypes from '../actions/types';
 import { Post } from '../services/reddit/models';
 
 export interface RedditState {
-    subreddit: string;
     posts: Post[];
     isLoading: boolean;
     lastUpdatedAt?: Date;
     error?: AxiosError | null;
 }
 export const initialState: RedditState = {
-    subreddit: "reduxjs",
     posts: [],
     isLoading: false,
 };
@@ -42,11 +40,6 @@ const redditReducer: Reducer<RedditState, Actions> = (
                 posts: [],
                 isLoading: false,
                 error: action.payload.error,
-            }
-        case ActionTypes.SELECT_SUBREDDIT:
-            return {
-                ...state,
-                subreddit: action.subreddit,
             }
     }
 }
