@@ -10,9 +10,12 @@ module.exports = {
     '@storybook/addon-backgrounds',
     '@storybook/addon-knobs',
     '@storybook/addon-links',
+    '@storybook/addon-storysource',
     '@storybook/addon-viewport',
   ],
   webpackFinal: async config => {
+
+    // https://storybook.js.org/docs/configurations/custom-webpack-config/
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       loader: require.resolve('babel-loader'),
@@ -21,6 +24,18 @@ module.exports = {
       },
     });
     config.resolve.extensions.push('.ts', '.tsx');
+
+    // https://github.com/storybookjs/storybook/tree/master/addons/storysource#parser
+    config.module.rules.push({
+      test: /\.stories\.tsx?$/,
+      loaders: [
+        {
+          loader: require.resolve('@storybook/source-loader'),
+          options: { parser: 'typescript' },
+        },
+      ],
+      enforce: 'pre',
+    })
     return config;
   },
 };
