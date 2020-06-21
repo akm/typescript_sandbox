@@ -1,8 +1,10 @@
 import { createStore } from 'redux'
 import rootReducer from './reducers'
 
-export const store = createStore(rootReducer)
+export const createRootStore = () => createStore(rootReducer)
+type createRootStoreType = typeof createRootStore
 
-// https://redux.js.org/recipes/usage-with-typescript#typing-configurestore
-export type AppStore = typeof store
-export type AppDispatch = typeof store.dispatch
+export type AppStore = ReturnType<createRootStoreType>
+export type AppDispatch = AppStore['dispatch']
+
+export const store = createRootStore()
