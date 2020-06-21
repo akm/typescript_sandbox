@@ -1,7 +1,8 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 import App from '../components/App'
+import Provider from './Provider'
 import { AppStore } from '../store'
 
 const Root = ({ store }: { store: AppStore }) => (
