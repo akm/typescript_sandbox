@@ -9,4 +9,9 @@ module.exports = {
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
+
+  // Setup Enzyme
+  // https://typescript-jp.gitbook.io/deep-dive/intro-1/jest#enzymeno
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "setupFilesAfterEnv": ["<rootDir>/src/setupEnzyme.ts"],
 }
