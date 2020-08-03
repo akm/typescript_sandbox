@@ -1,3 +1,7 @@
+function main() {
+    fetchUserInfo("js-primer-example");
+}
+
 function fetchUserInfo(userId) {
   fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
