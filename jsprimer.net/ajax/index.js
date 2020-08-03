@@ -39,6 +39,9 @@ function escapeSpecialChars(str) {
 }
 
 function escapeHTML(strings, ...values) {
+  // reduceに第2引数 initialValue を省略したためstringsの最初の値が代わりに使われているので、
+  // コールバックの最初の呼び出しの iの値は 0 ではなく 1。
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
   return strings.reduce((result, str, i) => {
     const value = values[i - 1];
     if (typeof value === "string") {
