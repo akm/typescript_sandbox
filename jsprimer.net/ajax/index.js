@@ -8,7 +8,8 @@ function fetchUserInfo(userId) {
       console.log(response.status);
       // エラーレスポンスが返されたことを検知する
       if (!response.ok) {
-        console.error("エラーレスポンス", response);
+        // エラーレスポンスからRejectedなPromiseを作成して返す
+        return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
       } else {
         return response.json().then(userInfo => {
           // HTMLの組み立て
