@@ -11,9 +11,12 @@ program.option("--gfm", "GFMを有効にする");
 program.parse(process.argv);
 // ファイルパスをprogram.args配列から取り出す
 const filePath = program.args[0];
-// オプションのパース結果をオブジェクトとして取得する
-const options = program.opts();
-console.log(options.gfm);
+
+// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+const cliOptions = {
+  gfm: false,
+  ...program.opts(),
+};
 
 // ファイルを非同期で読み込む
 fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
@@ -23,6 +26,9 @@ fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
     process.exit(1);
     return;
   }
-  const html = marked(file);
+  const html = marked(file, {
+    // オプションの値を使用する
+    gfm: cliOptions.gfm,
+  });
   console.log(html);
 });
