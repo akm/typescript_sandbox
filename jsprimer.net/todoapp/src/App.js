@@ -16,29 +16,25 @@ export class App {
 
     // 2. TodoListModelの状態が更新されたら表示を更新する
     this.todoListModel.onChange(() => {
-      // TodoリストをまとめるList要素
-      const todoListElement = element`<ul />`;
       // それぞれのTodoItem要素をtodoListElement以下へ追加する
       const todoItems = this.todoListModel.getTodoItems();
-      todoItems.forEach(item => {
-        // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
-        const todoItemElement = this.createItemElement(item, {
+      // TodoリストをまとめるList要素
+      const todoListElement = this.createListElement(todoItems, {
           // 指定したTodoアイテムの完了状態を反転させる
           onUpdateTodo: ({id, completed}) => {
             this.todoListModel.updateTodo({
-              id: item.id,
-              completed: !item.completed
+              id: id,
+              completed: !completed
             });
           },
           // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
           onDeleteTodo: ({id}) => {
             this.todoListModel.deleteTodo({
-              id: item.id
+              id: id
             });
           }
-        });
-        todoListElement.appendChild(todoItemElement);
       });
+
       // containerElementの中身をtodoListElementで上書きする
       render(todoListElement, containerElement);
       // アイテム数の表示を更新
@@ -55,6 +51,27 @@ export class App {
       }));
       inputElement.value = "";
     });
+  }
+
+
+  /**
+   * `todoItems`に対応するTodoリストのHTML要素を作成して返す
+   * @param {TodoItemModel[]} todoItems TodoItemModelの配列
+   * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスの更新イベントリスナー
+   * @param {function({id:string})} onDeleteTodo 削除ボタンのクリックイベントリスナー
+   * @returns {Element} TodoItemModelの配列に対応したリストのHTML要素
+   */
+  createListElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
+    const todoListElement = element`<ul />`;
+    // 各TodoItemモデルに対応したHTML要素を作成し、リスト要素へ追加する
+    todoItems.forEach(todoItem => {
+      const todoItemElement = this.createItemElement(todoItem, {
+        onDeleteTodo,
+        onUpdateTodo
+      });
+      todoListElement.appendChild(todoItemElement);
+    });
+    return todoListElement;
   }
 
   /**
@@ -79,7 +96,7 @@ export class App {
       // コールバック関数に変更
       onUpdateTodo({
         id: item.id,
-        completed: !item.completed
+        completed: item.completed
       });
     });
     const deleteButtonElement = todoItemElement.querySelector(".delete");
