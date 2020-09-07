@@ -7,6 +7,7 @@ export class App {
   constructor() {
     // 1. TodoListの初期化
     this.todoListModel = new TodoListModel();
+    this.todoListView = new TodoListView();
   }
 
   /**
@@ -42,11 +43,10 @@ export class App {
 
     // 2. TodoListModelの状態が更新されたら表示を更新する
     this.todoListModel.onChange(() => {
-      const todoListView = new TodoListView();
       // それぞれのTodoItem要素をtodoListElement以下へ追加する
       const todoItems = this.todoListModel.getTodoItems();
       // TodoリストをまとめるList要素
-      const todoListElement = todoListView.createElement(todoItems, {
+      const todoListElement = this.todoListView.createElement(todoItems, {
         // 指定したTodoアイテムの完了状態を反転させる
         onUpdateTodo: ({id, completed}) => {
           this.handleUpdate({ id, completed: !completed });
