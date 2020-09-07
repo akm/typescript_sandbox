@@ -47,14 +47,14 @@ export class App {
       const todoItems = this.todoListModel.getTodoItems();
       // TodoリストをまとめるList要素
       const todoListElement = todoListView.createElement(todoItems, {
-          // 指定したTodoアイテムの完了状態を反転させる
-          onUpdateTodo: ({id, completed}) => {
-            this.handleUpdate({ id, completed: !completed });
-          },
-          // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
-          onDeleteTodo: ({id}) => {
-            this.handleDelete({ id });
-          }
+        // 指定したTodoアイテムの完了状態を反転させる
+        onUpdateTodo: ({id, completed}) => {
+          this.handleUpdate({ id, completed: !completed });
+        },
+        // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
+        onDeleteTodo: ({id}) => {
+          this.handleDelete({ id });
+        }
       });
 
       // containerElementの中身をtodoListElementで上書きする
