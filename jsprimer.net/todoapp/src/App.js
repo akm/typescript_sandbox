@@ -9,6 +9,15 @@ export class App {
     this.todoListModel = new TodoListModel();
   }
 
+  /**
+   * Todoを追加するときに呼ばれるリスナー関数
+   * 新しいTodoItemをTodoListへ追加する
+   * @param {string} title
+   */
+  handleAdd(title) {
+    this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
+  }
+
   mount() {
     const formElement = document.querySelector("#js-form");
     const inputElement = document.querySelector("#js-form-input");
@@ -46,11 +55,7 @@ export class App {
     // 3. フォームを送信したら、新しいTodoItemModelを追加する
     formElement.addEventListener("submit", (event) => {
       event.preventDefault();
-      // 新しいTodoItemをTodoListへ追加する
-      this.todoListModel.addTodo(new TodoItemModel({
-        title: inputElement.value,
-        completed: false
-      }));
+      this.handleAdd(inputElement.value);
       inputElement.value = "";
     });
   }
