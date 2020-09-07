@@ -26,6 +26,14 @@ export class App {
     this.todoListModel.updateTodo({ id, completed });
   }
 
+  /**
+   * Todoを削除したときに呼ばれるリスナー関数
+   * @param {{ id: number }}
+   */
+  handleDelete({ id }) {
+    this.todoListModel.deleteTodo({ id });
+  }
+
   mount() {
     const formElement = document.querySelector("#js-form");
     const inputElement = document.querySelector("#js-form-input");
@@ -45,7 +53,7 @@ export class App {
           },
           // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
           onDeleteTodo: ({id}) => {
-            this.todoListModel.deleteTodo({ id });
+            this.handleDelete({ id });
           }
       });
 
