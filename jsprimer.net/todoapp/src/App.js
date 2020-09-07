@@ -18,6 +18,14 @@ export class App {
     this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
   }
 
+  /**
+   * Todoの状態を更新したときに呼ばれるリスナー関数
+   * @param {{ id:number, completed: boolean }}
+   */
+  handleUpdate({ id, completed }) {
+    this.todoListModel.updateTodo({ id, completed });
+  }
+
   mount() {
     const formElement = document.querySelector("#js-form");
     const inputElement = document.querySelector("#js-form-input");
@@ -33,7 +41,7 @@ export class App {
       const todoListElement = todoListView.createElement(todoItems, {
           // 指定したTodoアイテムの完了状態を反転させる
           onUpdateTodo: ({id, completed}) => {
-            this.todoListModel.updateTodo({ id, completed: !completed });
+            this.handleUpdate({ id, completed: !completed });
           },
           // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
           onDeleteTodo: ({id}) => {
