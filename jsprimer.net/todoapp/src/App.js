@@ -33,16 +33,11 @@ export class App {
       const todoListElement = todoListView.createElement(todoItems, {
           // 指定したTodoアイテムの完了状態を反転させる
           onUpdateTodo: ({id, completed}) => {
-            this.todoListModel.updateTodo({
-              id: id,
-              completed: !completed
-            });
+            this.todoListModel.updateTodo({ id, completed: !completed });
           },
           // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
           onDeleteTodo: ({id}) => {
-            this.todoListModel.deleteTodo({
-              id: id
-            });
+            this.todoListModel.deleteTodo({ id });
           }
       });
 
