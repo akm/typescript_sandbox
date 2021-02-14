@@ -10,6 +10,8 @@ logger.level = "info"
 
 logger.info(`loading started`);
 
+// beforeAll(async () => await new Promise(resolve => setTimeout(resolve, 3000)) )
+
 import newHook from "./hook";
 
 beforeAll(() => logger.info(`0 - beforeAll`));
