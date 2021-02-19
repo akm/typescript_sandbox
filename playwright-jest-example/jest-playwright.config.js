@@ -4,6 +4,6 @@ module.exports = {
   browsers: ["chromium", "firefox"],
   exitOnPageError: false, // GitHub currently throws errors
   launchOptions: {
-    headless: true
+    headless: !!process.env["PLAYWRIGHT_HEADLESS"]
   }
 }
