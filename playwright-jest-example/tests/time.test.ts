@@ -17,6 +17,8 @@ describe("http://time-time.net/timer/digital-clock.php", () => {
 
       await page.goto("https://iwb.jp/t/");
 
+      // await jestPlaywright.debug()
+
       await page.waitForSelector(`#t:text("${expected}")`)
   })
 })
